@@ -6,3 +6,9 @@
 	   :get
 	   :set)
   (:shadow :get :set))
+
+(defpackage :red-black
+  (:documentation
+   "Red-Black Tree for use as a memtable")
+  (:use :cl)
+  (:export :make-node))

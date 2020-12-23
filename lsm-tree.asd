@@ -5,4 +5,5 @@
   :licence "Public Domain"
   :depends-on ()
   :components ((:file "package")
+	       (:file "red-black")
 	       (:file "lsm-tree")))
