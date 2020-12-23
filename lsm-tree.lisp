@@ -18,7 +18,10 @@
   (with-open-file (s *file-name*
 		     :direction :input
 		     :if-does-not-exist nil)
-    (loop for line = (read-line s nil)
-       while line
-       do (if (= 0 (search name line))
-	      (return-from get (subseq line (+ 1 (length name))))))))
+    (when s
+      (loop for line = (read-line s nil)
+	 while line
+	 do (if (and (not (null (search name line)))
+	             (= 0 (search name line)))
+	        (return-from get (subseq line (+ 1 (length name)))))))))
+  
