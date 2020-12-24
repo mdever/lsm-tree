@@ -11,4 +11,8 @@
   (:documentation
    "Red-Black Tree for use as a memtable")
   (:use :cl)
-  (:export :node))
+  (:export :node
+	   :value
+	   :parent
+	   :left-child
+	   :right-child))
