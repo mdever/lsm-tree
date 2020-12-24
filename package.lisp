@@ -15,4 +15,6 @@
 	   :value
 	   :parent
 	   :left-child
-	   :right-child))
+	   :right-child
+	   :comparator
+	   :insert))
