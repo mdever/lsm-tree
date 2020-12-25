@@ -1,5 +1,15 @@
 (in-package :red-black)
 
+(defclass tree ()
+  ((root
+    :initarg :root
+    :initform nil
+    :accessor root)
+   (cmp
+    :initarg :cmp
+    :initform 'string>
+    :reader comparator)))
+
 (defclass node ()
   ((value
     :initarg :value
@@ -20,11 +30,7 @@
    (color
     :initarg :color
     :initform :black
-    :accessor color)
-   (cmp
-    :initarg :cmp
-    :initform 'string>
-    :reader comparator)))
+    :accessor color)))
 
 (defmethod initialize-instance :after ((the-node node) &key)
   (when (slot-value the-node 'left-child)
@@ -32,9 +38,11 @@
   (when (slot-value the-node  'right-child)
     (setf (slot-value (slot-value the-node 'right-child) 'parent) the-node)))
 
-(defun insert (root new-value)
-  (labels ((insert% (node val)
-	     (if (funcall (comparator node) val (value node))
+(defun insert (tree new-value)
+  (let ((root (root tree))
+	(cmp (comparator tree)))
+    (labels ((insert% (node val)
+	     (if (funcall cmp val (value node))
 		 (if (null (right-child node))
 		     (let ((new-node (make-instance 'node :value val :parent node)))
 		       (setf (right-child node) new-node))
@@ -43,4 +51,4 @@
 		     (let ((new-node (make-instance 'node :value val :parent node)))
 		       (setf (left-child node) new-node))
 		     (insert% (left-child node) val)))))
-    (insert% root new-value)))
+      (insert% root new-value))))

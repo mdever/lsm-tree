@@ -17,4 +17,6 @@
 	   :left-child
 	   :right-child
 	   :comparator
+	   :tree
+	   :root
 	   :insert))
