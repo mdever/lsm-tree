@@ -34,7 +34,7 @@
     (let ((cleaned1 (replace-key-delims str)))
       (replace-value-delims cleaned1))))
 
-(defun lsm-create (path)
+(defun create (path)
   (setq *file-name* (merge-pathnames path "data.lsm")))
 
 (defun set (name value)

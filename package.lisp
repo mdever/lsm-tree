@@ -2,7 +2,7 @@
   (:documentation
    "Functions related to creating and managing an lsm-tree structure")
   (:use :cl)
-  (:export :lsm-create
+  (:export :create
 	   :get
 	   :set)
   (:shadow :get :set))
@@ -16,7 +16,20 @@
 	   :parent
 	   :left-child
 	   :right-child
+	   :height
+	   :uncle
+	   :uncle-color
+	   :grandparent
+	   :color
+	   :pretty-print
+	   :print-in-order
 	   :comparator
 	   :tree
 	   :root
 	   :insert))
+
+(defpackage :lsm-tree/utils
+  (:documentation
+   "Utility functions for the program")
+  (:use :cl)
+  (:export :null-object-protect))
