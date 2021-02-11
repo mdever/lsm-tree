@@ -18,6 +18,9 @@
 	   :right-child
 	   :height
 	   :uncle
+	   :sibling
+	   :is-left-childp
+	   :is-right-childp
 	   :uncle-color
 	   :grandparent
 	   :color

@@ -43,6 +43,26 @@
        nil
        (,func ,obj)))
 
+(defun is-left-childp (node)
+  (let ((parent (parent node)))
+    (if (null parent)
+	(return-from is-left-childp nil))
+    (eql node (left-child parent))))
+
+(defun is-right-childp (node)
+  (let ((parent (parent node)))
+    (if (null parent)
+	(return-from is-right-childp nil))
+    (eql node (right-child parent))))
+
+(defun sibling (node)
+  (let ((parent (parent node)))
+    (if (null parent)
+	(return-from sibling nil))
+    (if (eql node (left-child parent))
+	(right-child parent)
+	(left-child parent))))
+
 (defmethod grandparent ((node node))
   (or-nil-if-nil-1
    (parent (or-nil-if-nil-1 (parent node)))))
@@ -83,6 +103,7 @@
   (labels ((height% (node)
 	     (if (null node)
 		 0
+
 		 (let ((left-depth  (height% (left-child  node)))
 		       (right-depth (height% (right-child node))))
 		   (+ 1 (max left-depth right-depth))))))
